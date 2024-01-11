@@ -1,8 +1,9 @@
-#### **train Requirements**
+#### **Train Requirements**
 
 pip install -r requirements.txt
 
 **Datasets**
+
 The dataset used in this paper is a single-character handwriting-imagination dataset, which is a subset of the Handwriting BCI dataset publicly released by Willett et al.[1]
 
 #### **train**
