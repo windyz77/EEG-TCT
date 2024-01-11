@@ -1,5 +1,5 @@
 Ref.: Ms. No. NEUCOM-D-22-05632R1
-Temporal-Channel Cascaded Transformer for Imagined Handwriting Character Recognition
+**Temporal-Channel Cascaded Transformer for Imagined Handwriting Character Recognition**
 Neurocomputing
 
 #### **Train Requirements**
