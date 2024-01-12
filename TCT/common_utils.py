@@ -1,10 +1,28 @@
 import os
-import numpy as np
 import datetime
 from functools import partial
 import torch
 
 join = partial(os.path.join)
+
+# saveWeights
+def saveWeights(train_acc, test_acc, epoch, model, optimizer,save_weights_path):
+    state = {'net': model.state_dict(), 'optimizer': optimizer.state_dict()}
+    for root, dir, files in os.walk("IC_512"):
+        if len(files) != 0:
+            for file in files:
+                if float(file.split('_')[
+                             4]) < test_acc:  # test_acc小于当前acc的模型被替换，大于当前acc的模型仍然存在,如果当前acc比所有模型都好，那所有模型都会被删除，只剩当前最好的acc
+                    os.remove(os.path.join(root, file))
+                    save_file = save_weights_path + 'EEGImaginedCharacter_Transformer_%d_%.4f_%.4f_weights.pth' % (
+                        epoch, train_acc, test_acc)
+                    torch.save(state, save_file)
+                    print('The model parameters have been saved successed')
+        else:
+            save_file = save_weights_path + 'EEGImaginedCharacter_Transformer_%d_%.4f_%.4f_weights.pth' % (
+                epoch, train_acc, test_acc)
+            torch.save(state, save_file)
+            print('The model parameters have been saved successed')
 
 
 def adjust_lr(epoch, optimizer, opt):
